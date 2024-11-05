@@ -11,26 +11,29 @@
   <div id="app">
     <div class="warp" @mouseup="handleMouseUp" @mousedown="handleMouseDown" @mouseenter="showMore"
       @mouseleave="hideMore">
-      <transition name="fade">
-        <div v-if="isNotMore" class="main-container" :style="{opacity: opacity, 'background-color': subColor}">
-          <div class="text">{{count[0]}} : {{count[1]}}</div>
-          <div class="finish" :style="{'right': progress, 'background-color': mainColor}"></div>
+      <!-- <transition name="fade"> -->
+        <div class="main-container" :style="{opacity: opacity}">
+          <div class="text" :style="{'display': pointDisplay, 'background-color': pointColor}">
+            <span>{{count[1] > 0 ? count[1] : count[0] }}</span>
+          </div>
+          <img draggable="false" :src="pic" style="transform: scale(0.45);">
+          <!-- <div class="finish" :style="{'right': progress, 'background-color': mainColor}"></div> -->
         </div>
         <!-- <div v-if="isNotMore" class="naxida">
           <img src="../../assets/nxd.png">
         </div> -->
-        <div v-else class="son-container">
+        <div class="son-container">
           <div class="son-item" :style="{'background-color': mainColor}" @click="showTodo">
             <img draggable="false" src="../../assets/time.png" alt="待办">
           </div>
-          <div class="son-item" :style="{'background-color': mainColor}" @click="showEssay">
+          <div class="son-item" :style="{'background-color': mainColor}">
             <img draggable="false" src="../../assets/edit.png" alt="随笔">
           </div>
-          <div class="son-item" :style="{'background-color': mainColor}">
+          <div class="son-item" :style="{'background-color': mainColor}" @click="showEssay">
             <img draggable="false" src="../../assets/light.png" alt="笔记">
           </div>
         </div>
-      </transition>
+      <!-- </transition> -->
     </div>
   </div>
   <script src="./index.js"></script>
