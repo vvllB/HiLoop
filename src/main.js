@@ -106,13 +106,13 @@ ipcMain.on('openMenu', (e) => {
           })
         }
       },
-      {
-        label: '置顶/取消',
-        click: () => {
-          topFlag = !topFlag
-          pages.suspensionWin.setAlwaysOnTop(topFlag)
-        }
-      },
+      // {
+      //   label: '置顶/取消',
+      //   click: () => {
+      //     topFlag = !topFlag
+      //     pages.suspensionWin.setAlwaysOnTop(topFlag)
+      //   }
+      // },
       {
         label: '开发者工具',
         click: () => {
