@@ -22,7 +22,10 @@ const app = Vue.createApp({
       count: [0, 0],
       opacity: 0.8,
       mainColor: '',
-      subColor: ''
+      subColor: '',
+      pic: '',
+      pointDisplay: '',
+      pointColor: '',
     }
   },
 
@@ -34,17 +37,38 @@ const app = Vue.createApp({
     ipcRenderer.on("update", (e, data) => {
       console.log(data)
       this.count = data
+      if (data[1] > 0) {
+        this.pic = '../../assets/ddl.gif';
+        this.pointDisplay = 'flex'
+        this.pointColor = this.subColor
+      } else if (data[0] > 0){
+        this.pic = '../../assets/haveTask.gif';
+        this.pointDisplay = 'flex'
+        this.pointColor = 'yellow'
+      } else {
+        this.pointDisplay = 'none'
+        this.pic = '../../assets/finish.gif';
+      }
     })
     ipcRenderer.on("config", (e, data) => {
       this.opacity = data.opacity
       this.mainColor = data.mainColor
       this.subColor = data.subColor
+      this.pointDisplay = data.pointDisplay
     })
     ipcRenderer.send("updateBall")
   },
   methods: {
     showMore() {
-      this.isNotMore = false
+      // this.isNotMore = false
+      // document.querySelector('.main-container').classList.remove("main-container-not-hover")
+      // document.querySelector('.main-container').classList.add("main-container-hover")
+      document.querySelector('.son-item:nth-child(3)').classList.add("rightRunAm")
+      document.querySelector('.son-item:nth-child(3)').classList.remove("rightRunBackAm")
+      // document.querySelector('.son-item:nth-child(2)').classList.add("midRunAm")
+      // document.querySelector('.son-item:nth-child(2)').classList.remove("midBackRunAm")
+      document.querySelector('.son-item:nth-child(1)').classList.add("leftRunAm")
+      document.querySelector('.son-item:nth-child(1)').classList.remove("leftRunBackAm")
       // ipcRenderer.send('setFloatIgnoreMouse', false)
     },
     showEssay(e) {
@@ -60,7 +84,15 @@ const app = Vue.createApp({
         ipcRenderer.send("showSimTodo", "show")
     },
     hideMore() {
-      this.isNotMore = true
+      // this.isNotMore = true
+      // document.querySelector('.main-container').classList.add("main-container-not-hover")
+      // document.querySelector('.main-container').classList.remove("main-container-hover")
+      document.querySelector('.son-item:nth-child(3)').classList.remove("rightRunAm")
+      document.querySelector('.son-item:nth-child(3)').classList.add("rightRunBackAm")
+      // document.querySelector('.son-item:nth-child(2)').classList.remove("midRunAm")
+      // document.querySelector('.son-item:nth-child(2)').classList.add("midBackRunAm")
+      document.querySelector('.son-item:nth-child(1)').classList.remove("leftRunAm")
+      document.querySelector('.son-item:nth-child(1)').classList.add("leftRunBackAm")
       // ipcRenderer.send('setFloatIgnoreMouse', true)
     },
     handleMouseDown(e) {
