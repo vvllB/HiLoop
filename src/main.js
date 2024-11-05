@@ -9,8 +9,8 @@ initDb()
 
 // 悬浮球的一些设置
 const suspensionConfig = {
-  width: 85,
-  height: 50,
+  width: 105,
+  height: 85,
 }
 
 // const suspensionConfig = {
